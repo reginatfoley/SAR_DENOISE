@@ -1,0 +1,1 @@
+SPECKLE_OUT_DIR=/data/capstone_training/speckle_1
