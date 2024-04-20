@@ -1,4 +1,6 @@
-Synthetic aperture radar (SAR) remote sensing offers a number of advantages over optical remote sensing. E.g. SAR image acquisition is not limited to daytime. Additionally, certain SAR radar frequencies can penetrate clouds, vegetation and can be used to provide important information about Earth surface and detect physical properties that are not possible with optical imagery.
+# SAR Image Despeckling with Diffusion Model
+
+Synthetic aperture radar (SAR) remote sensing offers a number of advantages over optical remote sensing. E.g. SAR image acquisition is not limited to daytime. Additionally, certain SAR radar friequencies can penetrate clouds, vegetation and can be used to provide important information about Earth surface and detect physical properties that are not possible with optical imagery.
 
 However, the main drawback of SAR images is the presence of speckle, a signal dependent granular noise. It visually degrades the appearance of images and may severely affect analysis and information extraction from the images. For this reason SAR image speckle reduction, or despeckling, is of crucial importance for a number of applications. Most of the earlier despeckling techniques caused various degrees of blurring and loss of detail.
 
@@ -9,7 +11,9 @@ Training dataset is at: https://huggingface.co/datasets/ReginaFoley/doq_data_lar
 To train the model run command:
 
 scripts/train_conditional.py --mixed_precision="bf16" --output_dir $SPECKLE_OUT_DIR --dataset_name ReginaFoley/doq_data_large_64 --train_batch_size 64 --resume_from_checkpoint latest
-Acknowledgement:
+
+
+### Acknowledgement:
 
 The network is based on a model from Huggingface:
 
