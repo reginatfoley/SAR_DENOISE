@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# copied from
+# copied and adapted from:
 # https://raw.githubusercontent.com/huggingface/diffusers/5d848ec07c2011d600ce5e5c1aa02a03152aea9b/examples/unconditional_image_generation/train_unconditional.py
 import argparse
 import inspect
@@ -569,7 +569,7 @@ def main(args):
     # Preprocessing the datasets and DataLoaders creation.
     augmentations = transforms.Compose(
         [
-            # NOTE EDF all images will already be desired size, so make custom transform
+            # NOTE RF all images will already be desired size, so make custom transform
             # that just ensures that they are in fact that size
             transforms.Resize(
                 args.resolution, interpolation=transforms.InterpolationMode.BILINEAR
@@ -859,7 +859,7 @@ def main(args):
                     .to(accelerator.device)
                 )
                 speckle_images = val_images * speckle
-                # TODO EDF think about what we actually want to do here...
+                # TODO RF this might be better differently, look into it in further detail later
                 speckle_images = transforms.functional.normalize(
                     speckle_images,
                     mean=torch.tensor(0.5, device=clean_images.device),
@@ -881,7 +881,7 @@ def main(args):
                 # denormalize the images and save to tensorboard
                 images_processed = (images * 255).round().astype("uint8")
 
-                # TODO EDF these aren't in correct range of values...just force to range [0-1] before multiplying by 255
+                # TODO RF these aren't in correct range of values...just force to range [0-1] before multiplying by 255
                 val_images_processed = (val_images * 255).float().round().cpu().numpy().astype("uint8")
                 speckle_images_processed = (speckle_images * 255).float().round().cpu().numpy().astype("uint8")
 
